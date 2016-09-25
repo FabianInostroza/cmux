@@ -54,10 +54,10 @@
  /* size of the reception buffer which gets data from the serial line */
 #define SIZE_BUF	256
 
-char *g_type = "default";
+char *g_type = "telit";
 
 /* number of virtual TTYs to create (most modems can handle up to 4) */
-int g_nodes = 1;
+int g_nodes = 4;
 
 /* name of the virtual TTYs to create */
 char *g_base = "/dev/ttyGSM";
@@ -80,7 +80,7 @@ int g_daemon = 1;
 int g_debug = 1;
 
 /* serial port of the modem */
-char *g_device = "/dev/ttyUSB0";
+char *g_device = "/dev/ttyS2";
 
 /* line speed */
 int g_speed = 115200;
@@ -391,7 +391,7 @@ int main(int argc, char **argv) {
 	if (match(g_type, "sim900")) {
 		g_mtu = 255;
 	} else {
-		g_mtu = 512;
+		//g_mtu = 512;
 	}
 
 	/* print global parameters */
