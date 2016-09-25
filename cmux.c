@@ -451,17 +451,19 @@ int main(int argc, char **argv) {
 		if (send_at_command(serial_fd, "AT#SELINT=2\r") == -1)
 			errx(EXIT_FAILURE, "AT#SELINT=2: bad response");
 
-		if (send_at_command(serial_fd, "ATE0V1&K3&D2\r") == -1)
-			errx(EXIT_FAILURE, "ATE0V1&K3&D2: bad response");
+		if (send_at_command(serial_fd, "ATE0V1&K3&D0\r") == -1)
+			errx(EXIT_FAILURE, "ATE0V1&K3&D0: bad response");
 
 		sprintf(atcommand, "AT+IPR=%d\r", g_speed);
 		if (send_at_command(serial_fd, atcommand) == -1)
 			errx(EXIT_FAILURE, "AT+IPR=%d: bad response", g_speed);
 
-		if (send_at_command(serial_fd, "AT#CMUXMODE=0\r") == -1)
-			errx(EXIT_FAILURE, "AT#CMUXMODE=0: bad response");
+		if (send_at_command(serial_fd, "AT#CMUXMODE=5\r") == -1)
+			errx(EXIT_FAILURE, "AT#CMUXMODE=5: bad response");
 
-		(void)send_at_command(serial_fd, "AT+CMUX=0\r");
+		//sprintf(atcommand, "AT+CMUX=0,0,5,%d,10,3,30,0,0\r", g_mtu);
+		sprintf(atcommand, "AT+CMUX=0,0,5,%d\r", g_mtu);
+		(void)send_at_command(serial_fd, atcommand);
 	} else {
 		if (send_at_command(serial_fd, "AT+IFC=2,2\r") == -1)
 			errx(EXIT_FAILURE, "AT+IFC=2,2: bad response");
