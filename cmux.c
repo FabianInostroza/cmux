@@ -489,7 +489,9 @@ int main(int argc, char **argv) {
 	if (match(g_type, "sim900")) {
 		sleep(0.1);
 	} else {
-		sleep(2);
+		//sleep(4);
+		//sleep(0.1);
+		//usleep(100000);
 	}
 
 	if (ioctl(serial_fd, TIOCSETD, &ldisc) < 0)
